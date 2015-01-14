@@ -1,11 +1,14 @@
-import play.Project._
-
-name := """hello-play-java"""
+name := """Freezer"""
 
 version := "1.0-SNAPSHOT"
 
-libraryDependencies ++= Seq(
-  "org.webjars" %% "webjars-play" % "2.2.2", 
-  "org.webjars" % "bootstrap" % "2.3.1")
+lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
-playJavaSettings
+scalaVersion := "2.11.1"
+
+libraryDependencies ++= Seq(
+  javaJdbc,
+  javaEbean,
+  cache,
+  javaWs
+)
