@@ -1,0 +1,17 @@
+@import helper._
+@import model._
+
+@(memList: List[Person], signInForm: Form[SignIn], message: String)
+
+@main("SignUp"){
+	<h1>Sign Up!</h1>
+	@form(routes.Application.createProfile()){
+		@inputText(signInForm("name"))
+		@inputText(signInForm("age"))
+		@inputText(signInForm("gender"))
+		@inputText(signInForm("preference"))
+		<input type="submit" value="SignUp">
+	}
+    <a href="/">back to home</a>
+	<li>@memList.size() possible Snowmates use Freezer<br>@message</li>
+}

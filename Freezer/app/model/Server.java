@@ -24,7 +24,7 @@ public class Server {
 		memList.add(new Person(name,age,gender,preference));
 	}
 
-	public Person findPerson(String name){
+	public static Person findPerson(String name){
 		for(Person p:memList){
 			if(p.getName().equalsIgnoreCase(name)){
 				return p;
