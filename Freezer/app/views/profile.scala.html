@@ -1,9 +1,38 @@
 @import helper._
 @import model._
 
-@(p: Person)
+@(p: Person, pName: String, stdForm: Form[StdForm], message: String)
 
 @main("SignIn"){
 	<h1>Hello @p.getName() !</h1>
-    <a href="/">back to home</a>
+	<li>@message</li>
+	<li><br>-----------------------<br>current set next Lift: @p.getNextLift()</li>
+	<li><br>-----------------------<br>set next Lift</li>
+	@form(routes.Application.setLift()){
+		@inputText(stdForm("name"))
+		<li>enter your name as verification:</li>
+		@inputText(stdForm("ownName"))
+		<input type="submit" value="Set Lift">
+	}
+	<li><br>-----------------------<br>your friends:</li>
+	<ul>
+		@for(p0 <- p.getFriends()){
+			<li>@p0.getName() - nextLift: @p0.getNextLift()</li>
+		}
+	</ul>
+	<li><br>-----------------------<br>your matches:</li>
+	<ul>
+		@for(p1 <- p.getMatches()){
+			<li>@p1.getName() - @p1.getAge()<br>your friend: @p1.getFriends().contains(p)<br>you sent a request: @p1.getRequests().contains(p)<br>you received a request: @p.getRequests().contains(p1)</li>
+		}
+	</ul>
+	<li><br>-----------------------<br>send friendrequest to</li>
+	@form(routes.Application.sendRequest()){
+		@inputText(stdForm("name"))
+		<li>enter your name as verification:</li>
+		@inputText(stdForm("ownName"))
+		<input type="submit" value="Send Request">
+	}
+	<li><br>-----------------------</li>
+    <a href="/">logout</a>
 }

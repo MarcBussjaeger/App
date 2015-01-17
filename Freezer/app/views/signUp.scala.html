@@ -1,15 +1,17 @@
 @import helper._
 @import model._
 
-@(memList: List[Person], signInForm: Form[SignIn], message: String)
+@(memList: List[Person], stdForm: Form[StdForm], message: String)
 
 @main("SignUp"){
 	<h1>Sign Up!</h1>
 	@form(routes.Application.createProfile()){
-		@inputText(signInForm("name"))
-		@inputText(signInForm("age"))
-		@inputText(signInForm("gender"))
-		@inputText(signInForm("preference"))
+		@inputText(stdForm("name"))
+		@inputText(stdForm("age"))
+		@inputText(stdForm("gender"))
+		@inputText(stdForm("preference"))
+		@inputPassword(stdForm("password"))
+		@inputPassword(stdForm("verification"))
 		<input type="submit" value="SignUp">
 	}
     <a href="/">back to home</a>

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class Person {
-	private String nextLift, name;
+	private String nextLift, name, password;
 	private int age;
 	private Gen gender, preference;
 	private ArrayList<Person> matches = new ArrayList<Person>();
@@ -22,6 +22,12 @@ public class Person {
 		matches = Server.match(this);
 	}
 	
+	public String getPassword(){
+		return password;
+	}
+	public void setPassword(String password){
+		this.password = password;
+	}
 	public String getNextLift() {
 		return nextLift;
 	}
@@ -78,6 +84,7 @@ public class Person {
 		this.preference = preference;
 	}
 	public ArrayList<Person> getMatches() {
+		this.matches = Server.match(this);
 		return matches;
 	}
 	public void setMatches(ArrayList<Person> matches) {
